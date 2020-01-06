@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.config;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -16,4 +16,14 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public static final int FRONT_LEFT_DRIVE_TALON_ID = 0;
+    public static final int FRONT_RIGHT_DRIVE_TALON_ID = 0;
+    public static final int BACK_LEFT_DRIVE_TALON_ID = 0;
+    public static final int BACK_RIGHT_DRIVE_TALON_ID = 0;
+
+    public static final int JOYSTICK_X_AXIS = 0;
+    public static final int JOYSTICK_Y_AXIS = 0;
+
+    public static final int JOYSTICK_INCREASE_BUTTON_ID = 0;
+    public static final int JOYSTICK_DECREASE_BUTTON_ID = 0;
 }
