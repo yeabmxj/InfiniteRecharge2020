@@ -3,7 +3,10 @@ package frc.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.commands.drive.Drive;
+import frc.config.Controls;
 
 import static frc.config.Constants.*;
 
@@ -13,7 +16,7 @@ public class Drivetrain extends SubsystemBase {
     private TalonSRX backLeft;
     private TalonSRX backRight;
 
-    private double throttle = .5;
+    private double t;
 
     public Drivetrain() {
         frontLeft = new TalonSRX(FRONT_LEFT_DRIVE_TALON_ID);
@@ -25,9 +28,11 @@ public class Drivetrain extends SubsystemBase {
         frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+
+        CommandScheduler.getInstance().setDefaultCommand(Drivetrain, Drive);
     }
 
-    public void drive(double x, double y, double t) {
+    public void drive(double x, double y) {
         double leftSpeed = (y + x) * t;
         double rightSpeed = (y - x) * t;
 
@@ -37,14 +42,9 @@ public class Drivetrain extends SubsystemBase {
         backRight.set(ControlMode.PercentOutput, rightSpeed);
     }
 
-    public double getT(double increase, double decrease) {
-        throttle += 0.03 *(increase - decrease);
-
-        if (throttle > 1){
-            throttle = 1;
-        } else if(throttle < 0){
-            throttle = 0;
+    public void throttle() {
+        if (t > .5) {
+            t = t + (.003 * (Controls.getIncrease() - Controls.getDecrease()));
         }
-        return throttle;
     }
 }

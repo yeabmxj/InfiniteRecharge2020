@@ -1,4 +1,4 @@
-package frc.commands;
+package frc.commands.drive;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.config.Controls;
@@ -14,6 +14,11 @@ public class Drive extends CommandBase {
 
     @Override
     public void initialize() {
-        drivetrain.drive(Controls.getX(), Controls.getY(), drivetrain.getT(Controls.getIncrease(), Controls.getDecrease()));
+
+    }
+
+    @Override
+    public void executive() {
+        drivetrain.drive(Controls.getX(), Controls.getY());
     }
 }

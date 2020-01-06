@@ -24,6 +24,6 @@ public final class Constants {
     public static final int JOYSTICK_X_AXIS = 0;
     public static final int JOYSTICK_Y_AXIS = 0;
 
-    public static final int JOYSTICK_INCREASE_BUTTON_ID = 0;
-    public static final int JOYSTICK_DECREASE_BUTTON_ID = 0;
+    public static final int JOYSTICK_LEFT_TRIGGER_AXIS = 0;
+    public static final int JOYSTICK_RIGHT_TRIGGER_AXIS = 0;
 }
