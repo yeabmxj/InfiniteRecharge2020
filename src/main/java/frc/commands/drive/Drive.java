@@ -12,12 +12,6 @@ public class Drive extends CommandBase {
         addRequirements(drivetrain);
     }
 
-    @Override
-    public void initialize() {
-
-    }
-
-    @Override
     public void executive() {
         drivetrain.drive(Controls.getX(), Controls.getY());
     }

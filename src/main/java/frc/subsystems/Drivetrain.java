@@ -28,8 +28,6 @@ public class Drivetrain extends SubsystemBase {
         frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
-
-        CommandScheduler.getInstance().setDefaultCommand(Drivetrain, Drive);
     }
 
     public void drive(double x, double y) {
