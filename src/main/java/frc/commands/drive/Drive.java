@@ -12,7 +12,7 @@ public class Drive extends CommandBase {
         addRequirements(drivetrain);
     }
 
-    public void executive() {
+    public void execute() {
         drivetrain.drive(Controls.getX(), Controls.getY());
     }
 }
