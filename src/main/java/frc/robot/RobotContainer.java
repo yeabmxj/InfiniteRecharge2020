@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.Commands.Intaker.Intake;
+import frc.Commands.Intaker.StopIntake;
+import frc.Subsystems.*;
 
 import static frc.Configuration.Constants.*;
 
@@ -23,6 +25,14 @@ import static frc.Configuration.Constants.*;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
+  public final Climber climber = new Climber();
+  public final Drivetrain drivetrain = new Drivetrain();
+  public final Intaker intaker = new Intaker();
+  public final Limelight limelight = new Limelight();
+  public final Shooter shooter = new Shooter();
+
+  public final StopIntake stopIntake = new StopIntake(intaker);
 
   private static Joystick joy = new Joystick(0);
 
@@ -44,9 +54,10 @@ public class RobotContainer {
   private Button intake = new JoystickButton(joy, INTAKE_BUTTON);
   private Button shoot = new JoystickButton(joy, SHOOT_BUTTON);
   private Button climb = new JoystickButton(joy, CLIMB_BUTTON);
+  private Button spin = new JoystickButton(joy, SPINNER_BUTTON);
 
   private void configureButtonBindings() {
-    intake.whenPressed();
+
   }
 
 
