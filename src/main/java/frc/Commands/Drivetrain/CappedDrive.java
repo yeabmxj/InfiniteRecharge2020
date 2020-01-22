@@ -1,17 +1,15 @@
 package frc.Commands.Drivetrain;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.Subsystems.Drivetrain;
 
-import java.util.Set;
+import static frc.Configuration.Constants.*;
 
-public class Drive extends CommandBase {
+public class CappedDrive extends CommandBase {
     Drivetrain drivetrain;
     double x, y, t = 0;
 
-    public Drive(Drivetrain drivetrain, double x, double y, double t) {
+    public CappedDrive(Drivetrain drivetrain, double x, double y, double t) {
         this.drivetrain = drivetrain;
         this.x = x;
         this.y = y;
@@ -21,11 +19,11 @@ public class Drive extends CommandBase {
 
     @Override
     public void execute() {
-        drivetrain.drive(x,y,t);
+        drivetrain.cappedDrive(x, y, t, ROBOT_SPEED_CAP);
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return drivetrain.getDistance() < SAFE_DISTANCE_THRESHOLD;
     }
 }

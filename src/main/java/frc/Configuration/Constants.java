@@ -33,4 +33,10 @@ public final class Constants {
     public static final int CLIMB_SPEED = 0;
     public static final int INTAKE_SPEED = 1;
     public static final int SHOOT_SPEED = 2;
+
+    public static final int PING = 1;
+    public static final int ECHO = 2;
+
+    public static final double SAFE_DISTANCE_THRESHOLD = 2;
+    public static final double ROBOT_SPEED_CAP = .75;
 }
