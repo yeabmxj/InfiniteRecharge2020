@@ -44,6 +44,7 @@ public class Spinner implements Subsystem {
         return colorReached;
     }
 
+    //todo look up actual messages and color options
     public int getColor() {
         switch(gameSpecificMessage.getValue().getString()) {
             case "RED":

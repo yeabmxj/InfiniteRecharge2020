@@ -50,4 +50,9 @@ public final class Constants {
     public static final double SPINNER_WHEEL_CIRCUMFERENCE = 1;
 
     public static final double COLOR_THRESHOLD = 8;
+
+    public static final int LIMELIGHT_PIPELINE = 2;
+    public static final double GOAL_HEIGHT = 2;
+    public static final double CAMERA_HEIGHT = 1;
+    public static final double CAMERA_ANGLE = 0;
 }
