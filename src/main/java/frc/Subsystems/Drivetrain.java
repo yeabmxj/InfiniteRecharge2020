@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.LinearFilter;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -21,6 +22,8 @@ public class Drivetrain implements Subsystem {
 
     private AnalogInput frontBumper;
 
+    private LinearFilter linearFilter;
+
     public Drivetrain() {
         frontLeft = new TalonSRX(FRONT_LEFT_TALON_ID);
         frontRight = new TalonSRX(FRONT_RIGHT_TALON_ID);
@@ -36,6 +39,8 @@ public class Drivetrain implements Subsystem {
         backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
         frontBumper = new AnalogInput(PING);
+
+        linearFilter = new LinearFilter(new double[]{0}, new double[]{0});
     }
 
     public void stop() {
@@ -53,6 +58,6 @@ public class Drivetrain implements Subsystem {
     }
 
     public double getDistance() {
-        return frontBumper.getVoltage() * (5.0/10240.0);
+        return linearFilter.calculate(frontBumper.getVoltage() * ULTRASONIC_UNIT_CONVERSION);
     }
 }

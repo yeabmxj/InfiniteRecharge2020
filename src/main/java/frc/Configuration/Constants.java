@@ -24,6 +24,7 @@ public final class Constants {
     public static final int INTAKE_MOTOR_ID = 0;
     public static final int SHOOT_MOTOR_ID = 1;
     public static final int CLIMB_MOTOR_ID = 2;
+    public static final int SPINNER_MOTOR_ID = 3;
 
     public static final int FRONT_LEFT_TALON_ID = 0;
     public static final int FRONT_RIGHT_TALON_ID = 1;
@@ -33,10 +34,20 @@ public final class Constants {
     public static final int CLIMB_SPEED = 0;
     public static final int INTAKE_SPEED = 1;
     public static final int SHOOT_SPEED = 2;
+    public static final int SPINNER_SPEED = 1;
 
     public static final int PING = 1;
     public static final int ECHO = 2;
 
     public static final double SAFE_DISTANCE_THRESHOLD = 2;
     public static final double ROBOT_SPEED_CAP = .75;
+    public static final double ULTRASONIC_UNIT_CONVERSION = (5.0/10240);
+    public static final double SPINNER_MOTOR_REVOLUTIONS_PER_TICK = 1;
+    public static final double SPINNER_REQUIRED_SPINS = 4;
+    public static final double WHEEL_RADIUS = 6;
+    public static final double WHEEL_CIRCUMFERENCE = WHEEL_RADIUS * Math.PI * 2;
+
+    public static final double SPINNER_WHEEL_CIRCUMFERENCE = 1;
+
+    public static final double COLOR_THRESHOLD = 8;
 }
