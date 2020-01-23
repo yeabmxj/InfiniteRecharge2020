@@ -22,9 +22,10 @@ public final class Constants {
     public static final int SPINNER_BUTTON = 3;
 
     public static final int INTAKE_MOTOR_ID = 0;
-    public static final int SHOOT_MOTOR_ID = 1;
+    public static final int FLYWHEEL_MOTOR_ID = 1;
     public static final int CLIMB_MOTOR_ID = 2;
     public static final int SPINNER_MOTOR_ID = 3;
+    public static final int STORAGE_MOTOR_ID = 4;
 
     public static final int FRONT_LEFT_TALON_ID = 0;
     public static final int FRONT_RIGHT_TALON_ID = 1;
@@ -35,6 +36,7 @@ public final class Constants {
     public static final int INTAKE_SPEED = 1;
     public static final int SHOOT_SPEED = 2;
     public static final int SPINNER_SPEED = 1;
+    public static final int STORAGE_SPEED = 1;
 
     public static final int PING = 1;
     public static final int ECHO = 2;
@@ -55,4 +57,6 @@ public final class Constants {
     public static final double GOAL_HEIGHT = 2;
     public static final double CAMERA_HEIGHT = 1;
     public static final double CAMERA_ANGLE = 0;
+
+    public static final int MAX_STORAGE_CAPACITY = 5;
 }
