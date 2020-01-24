@@ -17,8 +17,7 @@ import frc.Commands.Climber.*;
 import frc.Commands.Drivetrain.*;
 import frc.Commands.Intaker.*;
 import frc.Commands.Shooter.*;
-import frc.Commands.Spinner.PositionControl;
-import frc.Commands.Spinner.RotationControl;
+import frc.Commands.Spinner.*;
 import frc.Commands.Storage.*;
 import frc.Subsystems.*;
 
@@ -33,6 +32,9 @@ import static frc.Configuration.Constants.*;
 public class RobotContainer {
 
   private static Joystick joy = new Joystick(0);
+
+  private double xAxis = joy.getX();
+  private double yAxis = joy.getY();
 
   //Subsystems
   private final Climber climber = new Climber();
@@ -51,8 +53,8 @@ public class RobotContainer {
   private final RetractLift retractLift = new RetractLift();
 
   //Drive
-  //private final CappedDrive cappedDrive = new CappedDrive(drivetrain, );
-  //private final Drive drive = new Drive(drivetrain);
+  private final CappedDrive cappedDrive = new CappedDrive(drivetrain, xAxis, yAxis, drivetrain.getThrottle());
+  private final Drive drive = new Drive(drivetrain, xAxis, yAxis, drivetrain.getThrottle());
   private final StopDrive stopDrive = new StopDrive(drivetrain);
 
   //Intake
@@ -66,6 +68,8 @@ public class RobotContainer {
   //Spinner
   private final PositionControl positionControl = new PositionControl(spinner);
   private final RotationControl rotationControl = new RotationControl(spinner);
+  private final Spin spin = new Spin(spinner);
+  private final StopSpin stopSpin = new StopSpin(spinner);
 
   //Storage
   private final ActuateStorage actuateStorage = new ActuateStorage(storage);
@@ -93,6 +97,8 @@ public class RobotContainer {
   private Button shootBTN = new JoystickButton(joy, SHOOT_BUTTON);
   private Button climbBTN = new JoystickButton(joy, CLIMB_BUTTON);
   private Button spinBTN = new JoystickButton(joy, SPINNER_BUTTON);
+  private Button incThrotBTN = new JoystickButton(joy, INCREASE_THROTTLE_BUTTON);
+  private Button decThrotBTN = new JoystickButton(joy, DECREASE_THROTTLE_BUTTON);
 
   //todo add actual button binds
   private void configureButtonBindings() {
@@ -100,6 +106,8 @@ public class RobotContainer {
     shootBTN.whenPressed(new InstantCommand(shooter::shoot));
     climbBTN.whenPressed(extendLift);
     spinBTN.whenPressed(positionControl);
+    incThrotBTN.whenPressed(new InstantCommand(drivetrain::increaseThrottle));
+    decThrotBTN.whenPressed(new InstantCommand(drivetrain::decreaseThrottle));
   }
 
 

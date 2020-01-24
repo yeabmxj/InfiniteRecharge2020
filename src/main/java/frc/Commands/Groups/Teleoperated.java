@@ -7,7 +7,7 @@ public class Teleoperated extends ParallelCommandGroup {
 
     public Teleoperated() {
         addCommands(
-            new ParallelDeadlineGroup()
+            //new ParallelDeadlineGroup()
         );
     }
 }

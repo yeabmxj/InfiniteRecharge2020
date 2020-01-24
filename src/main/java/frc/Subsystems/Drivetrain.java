@@ -24,6 +24,8 @@ public class Drivetrain implements Subsystem {
 
     private LinearFilter linearFilter;
 
+    private double throttle = INITIAL_THROTTLE;
+
     public Drivetrain() {
         frontLeft = new TalonSRX(FRONT_LEFT_TALON_ID);
         frontRight = new TalonSRX(FRONT_RIGHT_TALON_ID);
@@ -59,5 +61,17 @@ public class Drivetrain implements Subsystem {
 
     public double getDistance() {
         return linearFilter.calculate(frontBumper.getVoltage() * ULTRASONIC_UNIT_CONVERSION);
+    }
+
+    public void increaseThrottle() {
+        throttle += throttle < 1 ? THROTTLE_GAIN : 0;
+    }
+
+    public void decreaseThrottle() {
+        throttle -= throttle > 0 ? THROTTLE_GAIN : 0;
+    }
+
+    public double getThrottle() {
+        return Math.pow(throttle, 1.0/3.0);
     }
 }

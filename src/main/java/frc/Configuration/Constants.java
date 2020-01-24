@@ -20,6 +20,11 @@ public final class Constants {
     public static final int SHOOT_BUTTON = 1;
     public static final int CLIMB_BUTTON = 2;
     public static final int SPINNER_BUTTON = 3;
+    public static final int INCREASE_THROTTLE_BUTTON = 4;
+    public static final int DECREASE_THROTTLE_BUTTON = 5;
+
+    public static final int JOYSTICK_X_AXIS = 0;
+    public static final int JOYSTICK_Y_AXIS = 0;
 
     public static final int INTAKE_MOTOR_ID = 0;
     public static final int FLYWHEEL_MOTOR_ID = 1;
@@ -59,4 +64,7 @@ public final class Constants {
     public static final double CAMERA_ANGLE = 0;
 
     public static final int MAX_STORAGE_CAPACITY = 5;
+
+    public static final double INITIAL_THROTTLE = .5;
+    public static final double THROTTLE_GAIN = .003;
 }
