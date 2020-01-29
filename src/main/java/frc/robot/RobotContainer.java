@@ -10,11 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.Autonomous.Simple.CrossLine;
 import frc.Commands.Climber.*;
 import frc.Commands.Drivetrain.*;
+import frc.Commands.Groups.CapacityBasedIntake;
 import frc.Commands.Intaker.*;
 import frc.Commands.Shooter.*;
 import frc.Commands.Spinner.*;
@@ -31,52 +34,56 @@ import static frc.Configuration.Constants.*;
  */
 public class RobotContainer {
 
+  //Joystick
   private static Joystick joy = new Joystick(0);
-
-  private double xAxis = joy.getX();
-  private double yAxis = joy.getY();
+  private double xAxis = joy.getRawAxis(JOYSTICK_X_AXIS);
+  private double yAxis = joy.getRawAxis(JOYSTICK_Y_AXIS);
 
   //Subsystems
-  private final Climber climber = new Climber();
-  private final Drivetrain drivetrain = new Drivetrain();
-  private final Intaker intaker = new Intaker();
-  private final Limelight limelight = new Limelight();
-  private final NavX navX = new NavX();
-  private final PDP pdp = new PDP();
-  private final Shooter shooter = new Shooter();
-  private final Spinner spinner = new Spinner();
-  private final Storage storage = new Storage();
+  public final Climber climber = new Climber();
+  public final Drivetrain drivetrain = new Drivetrain();
+  public final Intaker intaker = new Intaker();
+  public final Limelight limelight = new Limelight();
+  public final NavX navX = new NavX();
+  public final PDP pdp = new PDP();
+  public final Shooter shooter = new Shooter();
+  public final Spinner spinner = new Spinner();
+  public final Storage storage = new Storage();
 
   //Climb
-  private final ExtendLift extendLift = new ExtendLift();
-  private final RestLift restLift = new RestLift();
-  private final RetractLift retractLift = new RetractLift();
+  public final ExtendLift extendLift = new ExtendLift(climber);
+  public final StopLift stopLift = new StopLift(climber);
+  public final RetractLift retractLift = new RetractLift(climber);
 
   //Drive
-  private final CappedDrive cappedDrive = new CappedDrive(drivetrain, xAxis, yAxis, drivetrain.getThrottle());
-  private final Drive drive = new Drive(drivetrain, xAxis, yAxis, drivetrain.getThrottle());
-  private final StopDrive stopDrive = new StopDrive(drivetrain);
+  public final CappedDrive cappedDrive = new CappedDrive(drivetrain, xAxis, yAxis, drivetrain.getThrottle());
+  public final Drive drive = new Drive(drivetrain, xAxis, yAxis, drivetrain.getThrottle());
+  public final StopDrive stopDrive = new StopDrive(drivetrain);
 
   //Intake
-  private final Intake intake = new Intake(intaker);
-  private final StopIntake stopIntake = new StopIntake(intaker);
+  public final Intake intake = new Intake(intaker);
+  public final StopIntake stopIntake = new StopIntake(intaker);
 
   //Shooter
-  private final Shoot shoot = new Shoot();
-  private final StopShooting stopShooting = new StopShooting();
+  public final Shoot shoot = new Shoot();
+  public final StopShooting stopShooting = new StopShooting();
 
   //Spinner
-  private final PositionControl positionControl = new PositionControl(spinner);
-  private final RotationControl rotationControl = new RotationControl(spinner);
-  private final Spin spin = new Spin(spinner);
-  private final StopSpin stopSpin = new StopSpin(spinner);
+  public final PositionControl positionControl = new PositionControl(spinner);
+  public final RotationControl rotationControl = new RotationControl(spinner);
+  public final Spin spin = new Spin(spinner);
+  public final StopSpin stopSpin = new StopSpin(spinner);
 
   //Storage
-  private final ActuateStorage actuateStorage = new ActuateStorage(storage);
-  private final DecrementBallCount decrementBallCount = new DecrementBallCount(storage);
-  private final FullCapacity fullCapacity = new FullCapacity(storage);
-  private final HaltStorage haltStorage = new HaltStorage(storage);
-  private final IncrementBallCount incrementBallCount = new IncrementBallCount(storage);
+  public final ActuateStorage actuateStorage = new ActuateStorage(storage);
+  public final DecrementBallCount decrementBallCount = new DecrementBallCount(storage);
+  public final FullCapacity fullCapacity = new FullCapacity(storage);
+  public final HaltStorage haltStorage = new HaltStorage(storage);
+  public final IncrementBallCount incrementBallCount = new IncrementBallCount(storage);
+  public final CapacityBasedIntake capacityBasedIntake = new CapacityBasedIntake(fullCapacity, intake);
+
+  //Auto
+  public final CrossLine crossLine = new CrossLine();
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -110,16 +117,19 @@ public class RobotContainer {
     decThrotBTN.whenPressed(new InstantCommand(drivetrain::decreaseThrottle));
   }
 
+  public void startTeleop() {
+    capacityBasedIntake.schedule();
+  }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  /*
+
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return (Command) crossLine;
   }
-   */
 }

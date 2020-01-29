@@ -9,6 +9,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.networktables.NetworkTableType;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.robot.RobotContainer;
 
 import java.awt.*;
 
@@ -22,6 +23,8 @@ public class Spinner implements Subsystem {
     private NetworkTable fms;
     private NetworkTableEntry gameSpecificMessage;
 
+    private RobotContainer robotContainer;
+
     private boolean colorReached = false;
 
     public Spinner() {
@@ -30,6 +33,10 @@ public class Spinner implements Subsystem {
 
         fms = NetworkTableInstance.getDefault().getTable("FMSInfo");
         gameSpecificMessage = fms.getEntry("GameSpecificMessage");
+
+        robotContainer = new RobotContainer();
+
+        setDefaultCommand(robotContainer.stopSpin);
     }
 
     public void spin() {

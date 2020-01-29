@@ -16,35 +16,42 @@ package frc.Configuration;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int INTAKE_BUTTON = 0;
-    public static final int SHOOT_BUTTON = 1;
-    public static final int CLIMB_BUTTON = 2;
-    public static final int SPINNER_BUTTON = 3;
-    public static final int INCREASE_THROTTLE_BUTTON = 4;
-    public static final int DECREASE_THROTTLE_BUTTON = 5;
+    public static final byte INTAKE_BUTTON = 0;
+    public static final byte SHOOT_BUTTON = 1;
+    public static final byte CLIMB_BUTTON = 2;
+    public static final byte SPINNER_BUTTON = 3;
+    public static final byte INCREASE_THROTTLE_BUTTON = 4;
+    public static final byte DECREASE_THROTTLE_BUTTON = 5;
+    public static final byte EXTEND_CLIMBER_BUTTON = 6;
+    public static final byte RETRACT_CLIMBER_BUTTON = 7;
 
     public static final int JOYSTICK_X_AXIS = 0;
     public static final int JOYSTICK_Y_AXIS = 0;
 
-    public static final int INTAKE_MOTOR_ID = 0;
-    public static final int FLYWHEEL_MOTOR_ID = 1;
-    public static final int CLIMB_MOTOR_ID = 2;
-    public static final int SPINNER_MOTOR_ID = 3;
-    public static final int STORAGE_MOTOR_ID = 4;
+    public static final byte INTAKE_MOTOR_ID = 0;
+    public static final byte FLYWHEEL_MOTOR_ID = 1;
+    public static final byte SPINNER_MOTOR_ID = 2;
+    public static final byte STORAGE_MOTOR_ID = 3;
+    public static final byte SCISSOR_LIFT_MOTOR_ID = 4;
+    public static final byte WINCH_MOTOR_ID = 5;
 
-    public static final int FRONT_LEFT_TALON_ID = 0;
-    public static final int FRONT_RIGHT_TALON_ID = 1;
-    public static final int BACK_LEFT_TALON_ID = 2;
-    public static final int BACK_RIGHT_TALON_ID = 3;
+    public static final byte FRONT_LEFT_TALON_ID = 0;
+    public static final byte FRONT_RIGHT_TALON_ID = 1;
+    public static final byte BACK_LEFT_TALON_ID = 2;
+    public static final byte BACK_RIGHT_TALON_ID = 3;
 
-    public static final int CLIMB_SPEED = 0;
-    public static final int INTAKE_SPEED = 1;
-    public static final int SHOOT_SPEED = 2;
-    public static final int SPINNER_SPEED = 1;
-    public static final int STORAGE_SPEED = 1;
+    public static final double INTAKE_SPEED = 1;
+    public static final double SHOOT_SPEED = 1;
+    public static final double SPINNER_SPEED = 1;
+    public static final double STORAGE_SPEED = 1;
+    public static final double SCISSOR_LIFT_FORWARD_SPEED = 1;
+    public static final double SCISSOR_LIFT_BACKWARD_SPEED = 1;
+    public static final double WINCH_FORWARD_SPEED = 1;
+    public static final double WINCH_BACKWARD_SPEED = 1;
 
-    public static final int PING = 1;
-    public static final int ECHO = 2;
+    public static final double SCISSOR_LIFT_ENCODER_CONVERSION = 1;
+
+    public static final byte ULTRASONIC_ID = 1;
 
     public static final double SAFE_DISTANCE_THRESHOLD = 2;
     public static final double ROBOT_SPEED_CAP = .75;
@@ -58,12 +65,12 @@ public final class Constants {
 
     public static final double COLOR_THRESHOLD = 8;
 
-    public static final int LIMELIGHT_PIPELINE = 2;
+    public static final byte LIMELIGHT_PIPELINE = 2;
     public static final double GOAL_HEIGHT = 2;
     public static final double CAMERA_HEIGHT = 1;
     public static final double CAMERA_ANGLE = 0;
 
-    public static final int MAX_STORAGE_CAPACITY = 5;
+    public static final byte MAX_STORAGE_CAPACITY = 5;
 
     public static final double INITIAL_THROTTLE = .5;
     public static final double THROTTLE_GAIN = .003;

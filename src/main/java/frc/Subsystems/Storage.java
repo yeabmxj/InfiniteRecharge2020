@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.robot.RobotContainer;
 
 import static frc.Configuration.Constants.*;
 
@@ -13,12 +14,18 @@ public class Storage implements Subsystem {
 
     private TalonSRX storageActuator;
 
+    private RobotContainer robotContainer;
+
     private int ballCount = 0;
 
     public Storage() {
         lineBreak = new ColorSensorV3(I2C.Port.kMXP);
 
         storageActuator = new TalonSRX(STORAGE_MOTOR_ID);
+
+        robotContainer = new RobotContainer();
+
+        setDefaultCommand(robotContainer.haltStorage);
     }
 
     public void increment() {

@@ -5,11 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.LinearFilter;
-import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.Commands.Drivetrain.Drive;
 import frc.robot.RobotContainer;
 
 import static frc.Configuration.Constants.*;
@@ -23,6 +19,8 @@ public class Drivetrain implements Subsystem {
     private AnalogInput frontBumper;
 
     private LinearFilter linearFilter;
+
+    private RobotContainer robotContainer;
 
     private double throttle = INITIAL_THROTTLE;
 
@@ -40,9 +38,13 @@ public class Drivetrain implements Subsystem {
         backLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         backRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
-        frontBumper = new AnalogInput(PING);
+        frontBumper = new AnalogInput(ULTRASONIC_ID);
 
         linearFilter = new LinearFilter(new double[]{0}, new double[]{0});
+
+        robotContainer = new RobotContainer();
+
+        setDefaultCommand(robotContainer.drive);
     }
 
     public void stop() {
@@ -72,6 +74,6 @@ public class Drivetrain implements Subsystem {
     }
 
     public double getThrottle() {
-        return Math.pow(throttle, 1.0/3.0);
+        return Math.pow(throttle, 1.0/4.0);
     }
 }
